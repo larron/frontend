@@ -19,6 +19,6 @@ export default (
     <Route handler={App}>
         <DefaultRoute handler={Index} />
         <Route name="index" path="/" handler={Index} />
-        <Route name="artist" path="/artists/:id" handler={ArtistDetails} />
+        <Route name="artist" path="/artists/:id/:name" handler={ArtistDetails} />
     </Route>
 )

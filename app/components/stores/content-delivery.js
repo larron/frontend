@@ -25,7 +25,9 @@ export default Reflux.createStore({
         this.tracks = tracks || [];
         this.trig(err);
     },
-    showArtist(id) {
+    showArtist(artist) {
+        const id = artist.artist_id;
+
         this.currentArtist = _.find(this.artists, (artist) => {
             return String(id) === String(artist.artist_id);
         });

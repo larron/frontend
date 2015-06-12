@@ -11,7 +11,7 @@ export default React.createClass({
             <div className="row">
                 <div className="column small-12">
                     <div className="boxy p-15">
-                        <Link to="artist" params={{id: props.artist_id}}>{props.artist_name}</Link>
+                        <Link to="artist" params={{id: props.artist_id, name: props.artist_name}}>{props.artist_name}</Link>
                     </div>
                 </div>
             </div>

@@ -19,7 +19,13 @@ export default React.createClass({
         }, data));
     },
     componentDidMount() {
-        contentDeliveryActions.showArtist(this.props.params.id);
+        const artist_id = this.props.params.id;
+        const artist_name = this.props.params.artist_name;
+
+        contentDeliveryActions.showArtist({
+            artist_id,
+            artist_name
+        });
     },
     getInitialState() {
         return {

@@ -24,8 +24,8 @@ export default Reflux.createStore({
     failure(err) {
         this.trigger(err);
     },
-    completed(artists) {
-        this.artists = artists;
+    completed(data) {
+        this.artists = data.artists;
         this.trigger(null, this.artists);
     }
 });

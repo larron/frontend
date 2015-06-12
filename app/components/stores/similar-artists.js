@@ -4,16 +4,17 @@ import config from '../../configs';
 import contentDeliveryActions from '../actions/content-delivery';
 
 const request = superagent;
-const topTracksResourceUrl = `${config.apiUrl}/top_tracks`;
+const similarArtistsResourceUrl = `${config.apiUrl}/similar_artists`;
 
 export default Reflux.createStore({
     listenables: contentDeliveryActions,
-    tracks: [],
+    artists: [],
+    similarArtists: [],
     showArtist(artist) {
-        request.get(topTracksResourceUrl)
+        request.get(similarArtistsResourceUrl)
         .query({
             limit: 25,
-            artist_id: artist.artist_id
+            artist_name: artist.artist_name
         })
         .end((err, response) => {
             if (err) return this.failure(err);
@@ -29,14 +30,14 @@ export default Reflux.createStore({
         /*
          * TODO: remove this when data present
          */
-        this.tracks = [
-            {track_name: 'hustlas ambition'},
-            {track_name: 'gangstas'},
-            {track_name: 'gangstas pt II'},
-            {track_name: 'thug holiday'},
-            {track_name: 'wanksta'}
+        this.similarArtists = [
+            {artist_name: '50 Cent'},
+            {artist_name: 'Young Buck'},
+            {artist_name: 'Tony Yayo'},
+            {artist_name: 'Lloyd Banks'},
+            {artist_name: 'The Game'}
         ];
-        this.trigger(null, this.tracks);
+        this.trigger(null, this.similarArtists);
     }
 
 });
