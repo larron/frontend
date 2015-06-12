@@ -35,8 +35,7 @@ export default Reflux.createStore({
         this.trigger(err, {
             artists: this.artists,
             tracks: this.tracks,
-            // TODO: lol remove tupac
-            currentArtist: this.currentArtist || {artist_id: 1, artist_name: 'tupac'}
+            currentArtist: this.currentArtist,
         });
     }
 });
