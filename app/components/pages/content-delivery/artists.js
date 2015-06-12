@@ -15,6 +15,7 @@ export default React.createClass({
                         <h1>Top Artists</h1>
                     </div>
                 </div>
+                {artists}
             </section>
         );
     }

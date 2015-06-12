@@ -25,7 +25,18 @@ export default Reflux.createStore({
         this.trigger(err);
     },
     completed(data) {
-        this.artists = data.artists;
+        //this.artists = data.artists;
+        /*
+         * TODO: remove this
+         * Until the data is mapped according to RAML
+         * we shall adapt it:
+         */
+        this.artists = data.map((d) => {
+            return {
+                artist_name: d[0],
+                artist_id: d[1]
+            };
+        });
         this.trigger(null, this.artists);
     }
 });

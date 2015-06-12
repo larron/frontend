@@ -1,5 +1,8 @@
 'use strict';
 
+const Router = ReactRouter;
+const Link = Router.Link;
+
 export default React.createClass({
     render() {
         const props = this.props;
@@ -7,7 +10,9 @@ export default React.createClass({
         return (
             <div className="row">
                 <div className="column small-12">
-                    {props.artist_name}
+                    <div className="boxy p-15">
+                        <Link to="artist" params={{id: props.artist_id}}>{props.artist_name}</Link>
+                    </div>
                 </div>
             </div>
         );

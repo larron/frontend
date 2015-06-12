@@ -2,6 +2,7 @@
 
 import contentDeliveryActions from '../../actions/content-delivery';
 import contentDeliveryStore from '../../stores/content-delivery';
+import Loader from '../../shared/loader';
 import Header from './header';
 import Search from './search';
 import Artists from './artists';
@@ -12,12 +13,15 @@ export default React.createClass({
     ],
     contentDeliveryChange(err, data) {
         // TODO: If err we must do something!
-        this.setState(data);
+        this.setState(_.merge({
+            loading: false
+        }, data));
     },
     getInitialState() {
         return {
             artists: [],
-            min_date_range: moment().subtract(1, 'd'),
+            loading: true,
+            min_date_range: moment().subtract(1, 'y'),
             max_date_range: moment()
         };
     },
@@ -26,12 +30,14 @@ export default React.createClass({
     },
     changeMin(date) {
         this.setState({
+            loading: true,
             min_date_range: date
         });
         contentDeliveryActions.searchArtists(this.state);
     },
     changeMax(date) {
         this.setState({
+            loading: true,
             max_date_range: date
         });
         contentDeliveryActions.searchArtists(this.state);
@@ -43,11 +49,15 @@ export default React.createClass({
             changeMax: this.changeMax
         }, state);
 
+        const ArtistsSection = state.loading
+            ? (<Loader />)
+            : (<Artists artists={state.artists} />)
+
         return (
             <section>
                 <Header />
                 <Search {...searchProps} />
-                <Artists artists={state.artists} />
+                {ArtistsSection}
             </section>
         );
     }
